@@ -1,14 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+const CrearCuenta = () =>{
 
-
-const Login =() =>{
-    return ( 
+    return(
 <div className="hold-transition login-page">
     <div className="login-box">
     <div className="login-logo">
-    <Link to="#"><b>Iniciar</b>sesión</Link>
+    <Link to="#"><b>Crear</b> cuenta</Link>
     </div>
 
     <div className="card">
@@ -31,29 +30,26 @@ const Login =() =>{
                 </div>
             </div>
         </div>
-        <div className="row">
-            <div className="col-8">
-                <div className="icheck-primary">
-                <input type="checkbox" id="remember" />
-                <label htmlFor="remember">
-                    Remember Me
-                </label>
+        <div className="input-group mb-3">
+            <input type="password" className="form-control" placeholder="Confirmar Contraseña" id="password" name="password" />
+            <div className="input-group-append">
+                <div className="input-group-text">
+                    <span className="fas fa-lock" />
                 </div>
             </div>
-
+        </div>
+        <div className="row">
             <div className="col-4">
-                <button type="submit" className="btn btn-primary btn-block">Sign In</button>
+                <button type="submit" className="btn btn-primary btn-block">Crear</button>
             </div>
         </div>
         
         <div className="social-auth-links text-center mb-3">
 
-            <button type="submit" className="btn btn-block btn-primary">
+            <Link to="/" className="btn btn-block btn-primary">
             Iniciar sesión
-            </button>
-            <Link to="/crear-cuenta" className="btn btn-block btn-danger">
-            Crear cuenta
             </Link>
+
         </div>
         </form>
         </div>
@@ -62,7 +58,7 @@ const Login =() =>{
 </div>
 
 </div>
-);
+    )
 }
 
-export default Login;
+export default CrearCuenta;
