@@ -92,4 +92,4 @@ class APIInvoke{
     } 
 }
 
-export default new APIInvoke();
+export default APIInvoke();
