@@ -2,7 +2,7 @@
   "Usuarios": [
     {
       "id": 1,
-      "nombre": "Brayan",
+      "nombre": "estiven",
       "email": "brayanpaloma19bq@gmail",
       "password": "Brayan123@"
     },
@@ -11,6 +11,116 @@
       "nombre": "Arley",
       "email": "hector19bq@gmail",
       "password": "Hector123@"
+    },
+    {
+      "nombre": "Pedro",
+      "email": "arleyt@soy.sena.edu.co",
+      "password": "1234",
+      "confirmar": "12345",
+      "id": 3
+    },
+    {
+      "nombre": "Pedro",
+      "email": "arleyt@soy.sena.edu.co",
+      "password": "1234",
+      "confirmar": "12345",
+      "id": 4
+    },
+    {
+      "nombre": "Pedro",
+      "email": "arleyt@soy.sena.edu.co",
+      "password": "1234",
+      "confirmar": "12345",
+      "id": 5
+    },
+    {
+      "nombre": "Pedro",
+      "email": "arleyt@soy.sena.edu.co",
+      "password": "1234",
+      "confirmar": "12345",
+      "id": 6
+    },
+    {
+      "nombre": "Pedro",
+      "email": "arleyt@soy.sena.edu.co",
+      "password": "1234",
+      "confirmar": "12345",
+      "id": 7
+    },
+    {
+      "nombre": "Pedro",
+      "email": "arleyt@soy.sena.edu.co",
+      "password": "1234",
+      "confirmar": "12345",
+      "id": 8
+    },
+    {
+      "nombre": "Pedro",
+      "email": "arleyt@soy.sena.edu.co",
+      "password": "1234",
+      "confirmar": "12345",
+      "id": 9
+    },
+    {
+      "nombre": "Laura",
+      "email": "holis@sena.edu",
+      "password": "124",
+      "confirmar": "125",
+      "id": 10
+    },
+    {
+      "nombre": "HolaMundo",
+      "email": "sebasalfonso115@gmail.com",
+      "password": "12",
+      "confirmar": "12",
+      "id": 11
+    },
+    {
+      "nombre": "HolaMundo",
+      "email": "sebasalfonso115@gmail.com",
+      "password": "12",
+      "confirmar": "125",
+      "id": 12
+    },
+    {
+      "nombre": "ana",
+      "email": "ana@gmail.es",
+      "password": "1245",
+      "confirmar": "1245",
+      "id": 13
+    },
+    {
+      "nombre": "ana",
+      "email": "ana@gmail.es",
+      "password": "1245",
+      "confirmar": "1245",
+      "id": 14
+    },
+    {
+      "nombre": "Arley",
+      "email": "hector19bq@gmail",
+      "password": "Hector123@",
+      "confirmar": "Hector123@",
+      "id": 15
+    },
+    {
+      "nombre": "Ana",
+      "email": "hector19bq@gmail",
+      "password": "Hector123@",
+      "confirmar": "Hector123@",
+      "id": 16
+    },
+    {
+      "nombre": "Ana",
+      "email": "hector19bq@gmail",
+      "password": "Hector123@",
+      "confirmar": "Hector123@",
+      "id": 17
+    },
+    {
+      "email": "brayanpaloma19b@gmail.com",
+      "password": "124567",
+      "id": 18
     }
   ]
 }
