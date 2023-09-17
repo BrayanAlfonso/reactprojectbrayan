@@ -5,19 +5,26 @@ import ContentHeader from "../../components/ContentHeader";
 import Footer from "../../components/Footer";
 import APIInvoke from "../../utils/APIInvoke";
 import swal from "sweetalert";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
-const ProyectosAdmin = () => {
+const TareasAdmin = () => {
 
-    const [proyectos, setProyectos] = useState([]);
 
-    const cargarProyectos = async () => {
+    const [tareas, setTareas] = useState([]);
+
+    const { idProyecto } = useParams();
+    let arreglo = idProyecto.split('@')
+    const idproyecto = arreglo[0]
+    const nombreProyecto = arreglo[1]
+    const tituloPag = `Listado de tareas: ${nombreProyecto}`
+
+    const cargarTareas = async () => {
         try {
-            var response = await APIInvoke.invokeGET('/proyectos');
+            var response = await APIInvoke.invokeGET(`/tareas?proyecto=${idproyecto}`);
             console.log('Respuesta de la API:', response); // Verifica la respuesta de la API
 
             if (Array.isArray(response) && response.length > 0) {
-                setProyectos(response);
+                setTareas(response);
             } else {
                 console.error('La respuesta de la API no contiene proyectos.');
             }
@@ -26,17 +33,16 @@ const ProyectosAdmin = () => {
         }
     };
 
-
     useEffect(() => {
-        cargarProyectos();
+        cargarTareas();
     }, []);
 
-    const eliminarProyecto = async (e, id) => {
+    const eliminarTarea = async (e, idTarea, idProyecto) => { 
         e.preventDefault();
-        const verificarExistenciaUsuario = async (id) => {
+        const verificarExistenciaTarea = async (idTarea) => {
             try {
                 const response = await APIInvoke.invokeGET(
-                    `/proyectos?id=${id}`
+                    `/tareas?id=${idTarea}`
                 );
                 if (response && response.length > 0) {
                     return true; // El usuario ya existe
@@ -48,11 +54,11 @@ const ProyectosAdmin = () => {
             }
         };
 
-        const usuarioExistente = await verificarExistenciaUsuario(id);
+        const tareaExistente = await verificarExistenciaTarea(idTarea);
 
-        if (usuarioExistente) {
-            const response = await APIInvoke.invokeDELETE(`/proyectos/${id}`);
-            const msg = "Proyecto Eliminado Correctamente";
+        if (tareaExistente) {
+            const response = await APIInvoke.invokeDELETE(`/tareas/${idTarea}?proyecto=${idProyecto}`);
+            const msg = "Tarea Eliminada Correctamente";
             swal({
                 title: "Informacion",
                 text: msg,
@@ -67,9 +73,9 @@ const ProyectosAdmin = () => {
                     },
                 },
             });
-            cargarProyectos();
+            cargarTareas();
         } else {
-            const msg = "El Proyecto No Pudo Ser Eliminado";
+            const msg = "La tarea No Pudo Ser Eliminado";
             swal({
                 title: "Error",
                 text: msg,
@@ -94,15 +100,15 @@ const ProyectosAdmin = () => {
             <div className="content-wrapper">
 
                 <ContentHeader
-                    titulo={"Listado de proyectos"}
-                    breadCrumb1={"Inicio"}
-                    breadCrumb2={"Proyectos"}
+                    titulo={tituloPag}
+                    breadCrumb1={"Listado de proyectos"}
+                    breadCrumb2={"Tareas"}
                     ruta1={"/proyectos-admin"}
                 />
                 <section className="content">
                     <div className="card">
                         <div className="card-header">
-                            <h3 className="card-title"><Link to={"/proyectos-crear"} className="btn btn-block btn-primary btn-sm">crear Proyecto</Link></h3>
+                            <h3 className="card-title"><Link to={`/tareas-crear/${idProyecto}`} className="btn btn-block btn-primary btn-sm">crear tarea</Link></h3>
                             <div className="card-tools">
                                 <button type="button" className="btn btn-tool" data-card-widget="collapse" title="Collapse">
                                     <i className="fas fa-times" />
@@ -123,17 +129,16 @@ const ProyectosAdmin = () => {
                                 </thead>
                                 <tbody>
                                     {
-                                        proyectos.map((item) => (
+                                        tareas.map(item =>
                                             <tr key={item.id}>
                                                 <td>{item.id}</td>
                                                 <td>{item.nombre}</td>
                                                 <td>
-                                                    <Link to={`/tareas-admin/${item.id}@${item.nombre}`} className="btn btn-sm btn-info">Tareas</Link> &nbsp;&nbsp;
-                                                    <Link to={`/proyectos-editar/${item.id}@${item.nombre}`} className="btn btn-sm btn-primary">Editar</Link> &nbsp;&nbsp;
-                                                    <button onClick={(e) => eliminarProyecto(e, item.id)} className="btn btn-sm btn-danger">Borrar</button>
+                                                    <Link to={`/tareas-editar/${item.id}@${item.nombre}@${item.idP}@${nombreProyecto}`} className="btn btn-sm btn-primary">Editar</Link> &nbsp;&nbsp;
+                                                    <button onClick={(e) => eliminarTarea(e, item.id, item.proyecto)} className="btn btn-sm btn-danger">Borrar</button>
                                                 </td>
                                             </tr>
-                                        ))}
+                                        )}
                                 </tbody>
 
 
@@ -148,4 +153,4 @@ const ProyectosAdmin = () => {
     );
 }
 
-export default ProyectosAdmin;
+export default TareasAdmin;

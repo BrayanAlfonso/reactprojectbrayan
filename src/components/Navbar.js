@@ -1,8 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar =()=>{
-    return(
+
+    const navigate = useNavigate()
+
+    const cerrarSesión = () =>{
+        localStorage.removeItem("token")
+        navigate("/")
+    }
+        return(
 
         <nav className="main-header navbar navbar-expand navbar-white navbar-light">
             <ul className="navbar-nav">
@@ -10,7 +17,7 @@ const Navbar =()=>{
                     <Link to={"#"} className="nav-link" data-widget="pushmenu" role="button"><i className="fas fa-bars" /></Link>
                     </li>
                         <li className="nav-item d-none d-sm-inline-block">
-                            <a href="../../index3.html" className="nav-link">Salir</a>
+                            <strong onClick={cerrarSesión} style={{cursor:"pointer"}}className="nav-link">Salir</strong>
                         </li>
                     </ul>
                     <ul className="navbar-nav ml-auto">

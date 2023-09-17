@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const Home=()=>{
     return(
-    <div className="wrapper">
+        <div className="wrapper">
         <Navbar></Navbar>
         <SidebarContainer></SidebarContainer>
         <div className="content-wrapper">

@@ -33,6 +33,23 @@ const Login =() =>{
 
 
     const iniciarSesion = async ()=>{
+
+        const verificarExistenciaUsuario = async (email, password) => {
+            try {
+                const response = await APIInvoke.invokeGET(
+                    `/usuario?email=${email}&password=${password}`
+
+                );
+                if (response && response.length > 0) {
+                    return true; // El usuario ya existe
+                }
+                return false; // El usuario no existe
+            } catch (error) {
+                console.error(error);
+                return false; // Maneja el error si la solicitud falla
+            }
+        };
+
         if (password.length<6){
             const msg= "La contraseña debe ser de al menos 6 caracteres.";
             swal({
@@ -50,15 +67,10 @@ const Login =() =>{
                 }
             });
         }else{
-            const data={
-                email:usuario.email,
-                password:usuario.password
-    
-            }
-            const response = await APIInvoke.invokePOST(`/api/auth`, data);
-            const mensaje = response.msg;
 
-            if (mensaje === "El usuario no existe" || mensaje === "contraseña incorrecta"){
+            const usuarioExistente = await verificarExistenciaUsuario(email, password);
+
+            if (!usuarioExistente){
                 const msg= "No fue posible iniciar sesión, verifique los datos ingresados.";
                 swal({
                     title: 'Error',
@@ -75,11 +87,6 @@ const Login =() =>{
                     }
                 });
             }else{
-                //Obtenemos el token de acceso
-                const jwt=response.token;
-
-                //Guardar el token en el localstorage
-                localStorage.setItem('token',jwt)
                 navigate("/home")
             }
     
