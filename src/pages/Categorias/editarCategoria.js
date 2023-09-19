@@ -7,70 +7,51 @@ import { useNavigate, useParams } from "react-router-dom";
 import APIInvoke from "../../utils/APIInvoke";
 import swal from "sweetalert";
 
+const EditarCategoria = () => {
+
+    const navigate=useNavigate();
+
+    const {idCategoria}=useParams();
+    let arreglo = idCategoria.split('@')
+    const nombreCategoria= arreglo[1]
 
 
-const TareasCrear = () => {
 
-    const navigate = useNavigate();
 
-    const [tareas, setTareas] = useState({
-        nombre: ''
+    const [categoria, setCategoria] = useState({
+        nombre:nombreCategoria
     })
 
-    const { nombre } = tareas;
-
-
-
-    const { idProyecto } = useParams();
-    let arreglo = idProyecto.split('@')
-    const nombreProyecto = arreglo[1]
-    const tituloPag = `Creación de tareas: ${nombreProyecto}`
-
+    const {nombre}=categoria;
 
     useEffect(() => {
         document.getElementById("nombre").focus();
     }, [])
 
 
-    const onChange = (e) => {
-        setTareas({
-            ...tareas,
-            [e.target.name]: e.target.value
+    const onChange=(e)=>{
+        setCategoria({
+            ...categoria,
+            [e.target.name]:e.target.value
         })
 
     }
 
-    const crearTarea = async () => {
-        let arreglo = idProyecto.split('@')
-        const idproyecto = arreglo[0]
+    const editarCategoria={} = async ()=>{
+        let arreglo = idCategoria.split('@')
+        const idC=arreglo[0];
 
-        const data = {
-            idP: idproyecto,
-            nombre: tareas.nombre
+        const data={
+            nombre:categoria.nombre
         }
 
-        const response = await APIInvoke.invokePOST('/tareas', data);
-        const idTarea = response.id;
+        const response = await APIInvoke.invokePUT(`/categorias/${idC}`,data)
+        const idCategoriaEditar = response.id;
 
-        if (idTarea === '') {
-            const msg = "La tarea no fue creada correctamente";
-            swal({
-                title: 'Error',
-                text: msg,
-                icon: 'error',
-                buttons: {
-                    confirm: {
-                        text: 'Ok',
-                        value: true,
-                        visible: true,
-                        className: 'btn btn-danger',
-                        closeModal: true
-                    }
-                }
-            });
-        } else {
-            navigate(`/tareas-admin/${idProyecto}`)
-            const msg = "La tarea fue creada correctamente";
+        if(idCategoriaEditar!==idC){
+
+            navigate("/visualizar-categorias")
+            const msg = "La Categoria fue editada correctamente";
             swal({
                 title: 'Información',
                 text: msg,
@@ -85,14 +66,32 @@ const TareasCrear = () => {
                     }
                 }
             });
-
+        }else{
+            const msg = "La Categoria no fue editada correctamente";
+            swal({
+                title: 'Error',
+                text: msg,
+                icon: 'error',
+                buttons: {
+                    confirm: {
+                        text: 'Ok',
+                        value: true,
+                        visible: true,
+                        className: 'btn btn-danger',
+                        closeModal: true
+                    }
+                }
+            });
         }
+        
     }
 
-    const onSubmit = (e) => {
+    const onSubmit =(e)=>{
         e.preventDefault();
-        crearTarea()
+        editarCategoria();
     }
+
+
 
     return (
         <div className="wrapper">
@@ -101,17 +100,17 @@ const TareasCrear = () => {
             <div className="content-wrapper">
 
                 <ContentHeader
-                    titulo={tituloPag}
-                    breadCrumb1={"Listado de tareas"}
-                    breadCrumb2={"creación"}
-                    ruta1={`/tareas-admin/${idProyecto}`}
+                    titulo={"Edición de proyectos"}
+                    breadCrumb1={"Listado de proyectos"}
+                    breadCrumb2={"Edición"}
+                    ruta1={"/proyectos-admin"}
                 />
                 <section className="content">
                     <div className="card">
                         <div className="card-header">
                             <div className="card-tools">
                                 <button type="button" className="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                                    <i className="fas fa-times" />
+                                    <i className="fas fa-minus" />
                                 </button>
                                 <button type="button" className="btn btn-tool" data-card-widget="remove" title="Remove">
                                     <i className="fas fa-times" />
@@ -119,17 +118,17 @@ const TareasCrear = () => {
                             </div>
                         </div>
                         <div className="card-body">
-                            <form onSubmit={onSubmit} noValidate>
+                            <form  onSubmit={onSubmit} noValidate>
                                 <div className="card-body">
-                                    <div className="form-group">
+                                <div className="form-group">
                                         <label htmlFor="nombre">Nombre:</label>
-                                        <input type="text" className="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre de la tarea" value={nombre} onChange={onChange} required />
+                                        <input type="text" className="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre de la Categoria" value={nombre} onChange={onChange} required />
                                     </div>
 
                                 </div>
 
                                 <div className="card-footer">
-                                    <button type="submit" className="btn btn-primary">crear</button>
+                                    <button type="submit" className="btn btn-primary">Editar</button>
                                 </div>
                             </form>
 
@@ -143,4 +142,4 @@ const TareasCrear = () => {
     );
 }
 
-export default TareasCrear;
+export default EditarCategoria;

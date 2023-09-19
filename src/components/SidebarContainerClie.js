@@ -1,7 +1,8 @@
 import React from "react";
-import Menu from "./Menu";
+
 import Logo from '../img/LogoOmegaPetShop.PNG';
 import { Link } from "react-router-dom";
+import MenuClie from "./MenuClie";
 
 const SidebarContainer = () => {
 
@@ -23,13 +24,13 @@ return (
                     &nbsp;
                 </div>
                 <div className="info">
-                    <Link to={"/home"} className="d-block">
+                    <Link to={"/home2"} className="d-block">
                         Menu principal
                     </Link>
                 </div>
             </div>
 
-            <Menu></Menu>
+            <MenuClie></MenuClie>
         </div>
     </aside>
 );

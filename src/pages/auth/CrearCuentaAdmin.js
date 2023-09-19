@@ -4,14 +4,14 @@ import React, { useState, useEffect } from "react";
 import APIInvoke from '../../utils/APIInvoke';
 import swal from "sweetalert";
 
-const CrearCuenta = () => {
+const CrearCuentaAdmin = () => {
 
     const [usuario, setUsuario] = useState({
         nombre: '',
         email: '',
         password: '',
         confirmar: '',
-        rol:2
+        rol:1
     })
 
     const { nombre, email, password, confirmar } = usuario;
@@ -86,8 +86,9 @@ const CrearCuenta = () => {
                 nombre: usuario.nombre,
                 email: usuario.email,
                 password: usuario.password,
-                rol:2
+                rol:1
             };
+            console.log(data)
             const response = await APIInvoke.invokePOST(`/usuario`, data);
               //console.log(response);
             const mensaje = response.msg;
@@ -130,7 +131,7 @@ const CrearCuenta = () => {
                     email: '',
                     password: '',
                     confirmar: '',
-                    rol:2
+                    rol:1
                 })
             }
         }
@@ -145,7 +146,7 @@ const CrearCuenta = () => {
         <div className="hold-transition login-page">
             <div className="login-box">
                 <div className="login-logo">
-                    <Link to="#"><b>Crear</b> cuenta</Link>
+                    <Link to="#"><b>Crear</b> cuenta para admin</Link>
                 </div>
 
                 <div className="card">
@@ -206,5 +207,5 @@ const CrearCuenta = () => {
     )
 }
 
-export default CrearCuenta;
+export default CrearCuentaAdmin;
 

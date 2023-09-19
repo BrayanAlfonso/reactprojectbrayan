@@ -1,14 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Menu=()=>{
+const MenuClie=()=>{
     return(
 
         <nav className="mt-2">
             <ul className="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
             <li className="nav-item">
-                    <Link to={"/home"} className="nav-link">
+                    <Link to={"/home2"} className="nav-link">
                         <i className="nav-icon fas fa-th" />
                         <p>
                             Inicio
@@ -17,22 +17,15 @@ const Menu=()=>{
                 </li>
 
                 <li className="nav-item">
-                    <Link to={"/proyectos-admin"} className="nav-link">
-                        <i className="nav-icon fas fa-store" />
+                    <Link to={"/visualizar-prod"} className="nav-link">
+                        <i className="fas fa-shopping-bag" />
                         <p>
-                            Tiendas
+                            Productos
                         </p>
                     </Link>
                 </li>
 
-                <li className="nav-item">
-                    <Link to={"/visualizar-categorias"} className="nav-link">
-                        <i className="nav-icon fas fa-tag" />
-                        <p>
-                            Categorias
-                        </p>
-                    </Link>
-                </li>
+
             </ul>
         </nav>
 
@@ -40,4 +33,4 @@ const Menu=()=>{
     )
 }
 
-export default Menu;
+export default MenuClie;

@@ -9,17 +9,17 @@ import { Link } from "react-router-dom";
 
 const ProyectosAdmin = () => {
 
-    const [proyectos, setProyectos] = useState([]);
+    const [tiendas, setProyectos] = useState([]);
 
-    const cargarProyectos = async () => {
+    const cargarTiendas = async () => {
         try {
-            var response = await APIInvoke.invokeGET('/proyectos');
+            var response = await APIInvoke.invokeGET('/tiendas');
             console.log('Respuesta de la API:', response); // Verifica la respuesta de la API
 
             if (Array.isArray(response) && response.length > 0) {
                 setProyectos(response);
             } else {
-                console.error('La respuesta de la API no contiene proyectos.');
+                console.error('La respuesta de la API no contiene tiendas.');
             }
         } catch (error) {
             console.error('Error al cargar los proyectos:', error);
@@ -28,15 +28,15 @@ const ProyectosAdmin = () => {
 
 
     useEffect(() => {
-        cargarProyectos();
+        cargarTiendas();
     }, []);
 
-    const eliminarProyecto = async (e, id) => {
+    const eliminarTienda = async (e, id) => {
         e.preventDefault();
-        const verificarExistenciaUsuario = async (id) => {
+        const verificarExistenciaTiendas = async (id) => {
             try {
                 const response = await APIInvoke.invokeGET(
-                    `/proyectos?id=${id}`
+                    `/tiendas?id=${id}`
                 );
                 if (response && response.length > 0) {
                     return true; // El usuario ya existe
@@ -48,11 +48,11 @@ const ProyectosAdmin = () => {
             }
         };
 
-        const usuarioExistente = await verificarExistenciaUsuario(id);
+        const tiendaExistente = await verificarExistenciaTiendas(id);
 
-        if (usuarioExistente) {
-            const response = await APIInvoke.invokeDELETE(`/proyectos/${id}`);
-            const msg = "Proyecto Eliminado Correctamente";
+        if (tiendaExistente) {
+            const response = await APIInvoke.invokeDELETE(`/tiendas/${id}`);
+            const msg = "Tienda Eliminada Correctamente";
             swal({
                 title: "Informacion",
                 text: msg,
@@ -67,9 +67,9 @@ const ProyectosAdmin = () => {
                     },
                 },
             });
-            cargarProyectos();
+            cargarTiendas();
         } else {
-            const msg = "El Proyecto No Pudo Ser Eliminado";
+            const msg = "La tienda No Pudo Ser Eliminado";
             swal({
                 title: "Error",
                 text: msg,
@@ -94,18 +94,20 @@ const ProyectosAdmin = () => {
             <div className="content-wrapper">
 
                 <ContentHeader
-                    titulo={"Listado de proyectos"}
+                    titulo={"Listado de tiendas"}
                     breadCrumb1={"Inicio"}
-                    breadCrumb2={"Proyectos"}
-                    ruta1={"/proyectos-admin"}
+                    breadCrumb2={"Tiendas"}
+                    ruta1={"/home"}
                 />
                 <section className="content">
                     <div className="card">
                         <div className="card-header">
-                            <h3 className="card-title"><Link to={"/proyectos-crear"} className="btn btn-block btn-primary btn-sm">crear Proyecto</Link></h3>
+                        <h3 className="card-title"><Link to={"/proyectos-crear"} className="btn btn-block btn-primary btn-sm">Registrar tienda</Link></h3>
                             <div className="card-tools">
+                            <h3 className="card-title" style={{marginRight:'120px'}}><Link to={"/visualizar-pedidos"} className="btn btn-block bg-warning btn-sm">Pedidos</Link></h3>
+
                                 <button type="button" className="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                                    <i className="fas fa-times" />
+                                <i className="fas fa-minus" />
                                 </button>
                                 <button type="button" className="btn btn-tool" data-card-widget="remove" title="Remove">
                                     <i className="fas fa-times" />
@@ -117,20 +119,22 @@ const ProyectosAdmin = () => {
                                 <thead>
                                     <tr>
                                         <th style={{ width: '10%' }}>#</th>
-                                        <th style={{ width: '75%' }}>Nombre</th>
+                                        <th style={{ width: '40%' }}>Nombre</th>
+                                        <th style={{ width: '35%' }}>Dirección</th>
                                         <th style={{ width: '15%' }}>Opciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {
-                                        proyectos.map((item) => (
+                                        tiendas.map((item) => (
                                             <tr key={item.id}>
                                                 <td>{item.id}</td>
                                                 <td>{item.nombre}</td>
+                                                <td>{item.direccion}</td>
                                                 <td>
-                                                    <Link to={`/tareas-admin/${item.id}@${item.nombre}`} className="btn btn-sm btn-info">Tareas</Link> &nbsp;&nbsp;
-                                                    <Link to={`/proyectos-editar/${item.id}@${item.nombre}`} className="btn btn-sm btn-primary">Editar</Link> &nbsp;&nbsp;
-                                                    <button onClick={(e) => eliminarProyecto(e, item.id)} className="btn btn-sm btn-danger">Borrar</button>
+                                                    <Link to={`/tareas-admin/${item.id}@${item.nombre}@${item.direccion}`} className="btn btn-sm btn-info">Productos</Link> &nbsp;&nbsp;
+                                                    <Link to={`/proyectos-editar/${item.id}@${item.nombre}@${item.direccion}`} className="btn btn-sm btn-primary">Editar</Link> &nbsp;&nbsp;
+                                                    <button onClick={(e) => eliminarTienda(e, item.id)} className="btn btn-sm btn-danger">Borrar</button>
                                                 </td>
                                             </tr>
                                         ))}

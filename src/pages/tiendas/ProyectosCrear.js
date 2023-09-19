@@ -11,19 +11,20 @@ const ProyectosCrear = () => {
 
     const navigate=useNavigate()
 
-    const [proyecto, setProyecto] = useState({
-        nombre:''
+    const [tiendas, setTiendas] = useState({
+        nombre:'',
+        direccion:''
     })
 
-    const {nombre}=proyecto;
+    const {nombre, direccion}=tiendas;
 
     useEffect(() => {
         document.getElementById("nombre").focus();
     }, [])
 
     const onChange=(e)=>{
-        setProyecto({
-            ...proyecto,
+        setTiendas({
+            ...tiendas,
             [e.target.name]:e.target.value
         })
 
@@ -31,13 +32,14 @@ const ProyectosCrear = () => {
 
     const crearProyecto = async () =>{
         const data ={
-            nombre: proyecto.nombre
+            nombre: tiendas.nombre,
+            direccion:tiendas.direccion
         }
-        const response = await APIInvoke.invokePOST('/proyectos', data);
+        const response = await APIInvoke.invokePOST('/tiendas', data);
         const idProyecto = response.id;
 
         if (idProyecto===""){
-            const msg = "El proyecto no fue creado correctamente";
+            const msg = "La tienda no fue registrada correctamente";
             swal({
                 title: 'Error',
                 text: msg,
@@ -54,7 +56,7 @@ const ProyectosCrear = () => {
             });
     }else{
         navigate("/proyectos-admin")
-        const msg = "El proyecto fue creado correctamente";
+        const msg = "La tienda fue creada correctamente";
         swal({
             title: 'Información',
             text: msg,
@@ -70,8 +72,9 @@ const ProyectosCrear = () => {
             }
         });
 
-        setProyecto({
-            nombre:''
+        setTiendas({
+            nombre:'',
+            direccion:''
         })
     }
     }
@@ -98,7 +101,7 @@ const ProyectosCrear = () => {
                         <div className="card-header">
                             <div className="card-tools">
                                 <button type="button" className="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                                    <i className="fas fa-times" />
+                                    <i className="fas fa-minus" />
                                 </button>
                                 <button type="button" className="btn btn-tool" data-card-widget="remove" title="Remove">
                                     <i className="fas fa-times" />
@@ -108,9 +111,13 @@ const ProyectosCrear = () => {
                         <div className="card-body">
                         <form onSubmit={onSubmit} noValidate>
                                 <div className="card-body">
-                                    <div className="form-group">
+                                <div className="form-group">
                                         <label htmlFor="nombre">Nombre:</label>
-                                        <input type="text" className="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre del proyecto" value={nombre} onChange={onChange} required/>
+                                        <input type="text" className="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre de la tienda" value={nombre} onChange={onChange} required/>
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="nombre">Dirección:</label>
+                                        <input type="text" className="form-control" id="direccion" name="direccion" placeholder="Ingrese la direccion de la tienda" value={direccion} onChange={onChange} required/>
                                     </div>
 
                                 </div>
