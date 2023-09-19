@@ -42,7 +42,7 @@ function App() {
           <Route path="/tareas-admin/:idProyecto" exact element={<TareasAdmin/>}/>
           <Route path="/tareas-crear/:idProyecto" exact element={<TareasCrear/>}/>
           <Route path="/tareas-editar/:idProyecto" exact element={<TareasEditar/>}/>
-          <Route path="/visualizar-prod" exact element={<VisualizarProd/>}/>
+          <Route path="/visualizar-prod/:idProd" exact element={<VisualizarProd/>}/>
           <Route path="/visualizar-pedidos" exact element={<VisualizarPedidos/>}/>
           <Route path="/editar-pedido/:idPedido" exact element={<EditarPedido/>}/>
           <Route path="/compra/:idVenta" exact element={<CompraProd/>}/>

@@ -16,15 +16,6 @@ const MenuClie=()=>{
                     </Link>
                 </li>
 
-                <li className="nav-item">
-                    <Link to={"/visualizar-prod"} className="nav-link">
-                        <i className="fas fa-shopping-bag" />
-                        <p>
-                            Productos
-                        </p>
-                    </Link>
-                </li>
-
 
             </ul>
         </nav>

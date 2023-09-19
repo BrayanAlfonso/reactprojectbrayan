@@ -10,11 +10,16 @@ import { useEffect, useState } from "react";
 const VisualizarProd = () => {
     const [productos, setproductos] = useState([]);
 
-
+        const { idProd} = useParams();
+        let arreglo = idProd.split('@')
+        const idTienda = arreglo[0]
+        console.log(idTienda)
+        const nombreTienda = arreglo[1]
+        const tituloPag = `Listado de productos: ${nombreTienda}`
 
     const cargarProductos = async () => {
         try {
-            var response = await APIInvoke.invokeGET(`/productos`);
+            var response = await APIInvoke.invokeGET(`/productos?idT=${idTienda}`);
             console.log('Respuesta de la API:', response); // Verifica la respuesta de la API
 
             if (Array.isArray(response) && response.length > 0) {
@@ -38,10 +43,10 @@ const VisualizarProd = () => {
         <div className="content-wrapper">
 
             <ContentHeader
-                titulo={"Produtos"}
-                breadCrumb1={"Listado de productos"}
+                titulo={tituloPag}
+                breadCrumb1={"Home"}
                 breadCrumb2={"productos"}
-                ruta1={"/visualizar-prod"}
+                ruta1={"/home2"}
             />
             <section className="content">
                 <div className="card">
@@ -75,10 +80,10 @@ const VisualizarProd = () => {
                                             <td>{item.id}</td>
                                             <td>{item.nombre}</td>
                                             <td>{item.precio}</td>
-                                            <td>{item.idT}</td>
+                                            <td>{nombreTienda}</td>
                                             <td>{item.idC}</td>
                                             <td>
-                                            <Link to={`/compra/${item.id}@${item.nombre}`} className="btn btn-sm btn-primary">Comprar</Link>
+                                            <Link to={`/compra/${item.id}@${item.nombre}@${idTienda}@${nombreTienda}`} className="btn btn-sm btn-primary">Comprar</Link>
                                             </td>
                                         </tr>
                                     )}

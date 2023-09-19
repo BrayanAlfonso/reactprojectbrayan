@@ -18,8 +18,10 @@ const { idVenta } = useParams();
 let arreglo = idVenta.split('@')
 const idProducto= arreglo[0]
 const nombreProducto = arreglo[1]
+const idTienda = arreglo[2]
+const nombreTienda = arreglo[3]
 
-const tituloPag = `Formulario de ompra`
+const tituloPag = `Formulario de compra`
 
 
 const [venta, setVentas] = useState({
@@ -76,7 +78,7 @@ const realizarVenta = async () => {
             }
         });
 }else{
-    navigate("/visualizar-prod")
+    navigate("/home2")
     const msg = "La compra se ha realizado satisfactoriamente";
     swal({
         title: 'Información',
@@ -117,7 +119,7 @@ const onSubmit = (e) => {
                     titulo={tituloPag}
                     breadCrumb1={"Formulario compras"}
                     breadCrumb2={"Edición"}
-                    ruta1={`/visualizar-prod`}
+                    ruta1={`/visualizar-prod/${idTienda}@${nombreTienda}`}
                 />
                 <section className="content">
                     <div className="card">

@@ -1,126 +1,153 @@
 {
-  "Usuarios": [
-    {
-      "id": 1,
-      "nombre": "estiven",
-      "email": "brayanpaloma19bq@gmail",
-      "password": "Brayan123@"
-    },
-    {
-      "id": 2,
-      "nombre": "Arley",
-      "email": "hector19bq@gmail",
-      "password": "Hector123@"
-    },
+  "usuario": [
     {
       "nombre": "Pedro",
-      "email": "arleyt@soy.sena.edu.co",
-      "password": "1234",
-      "confirmar": "12345",
+      "email": "brayanpaloma19b@gmail.com",
+      "password": "124561",
+      "confirmar": "124561",
+      "id": 1,
+      "rol": 1
+    },
+    {
+      "nombre": "Juan",
+      "email": "brayanpaloma1@gmail.com",
+      "password": "124561",
+      "confirmar": "124561",
+      "id": 2,
+      "rol": 2
+    },
+    {
+      "nombre": "Hecter",
+      "email": "hecter@gmail.es",
+      "password": "hecter12",
+      "rol": 2,
       "id": 3
     },
     {
-      "nombre": "Pedro",
-      "email": "arleyt@soy.sena.edu.co",
-      "password": "1234",
-      "confirmar": "12345",
+      "nombre": "Pablo",
+      "email": "pablo@gmail.es",
+      "password": "pablo12",
+      "rol": 2,
       "id": 4
     },
     {
-      "nombre": "Pedro",
-      "email": "arleyt@soy.sena.edu.co",
-      "password": "1234",
-      "confirmar": "12345",
+      "nombre": "luna",
+      "email": "luna@gmail.com",
+      "password": "luna12",
+      "rol": 1,
       "id": 5
     },
     {
-      "nombre": "Pedro",
-      "email": "arleyt@soy.sena.edu.co",
-      "password": "1234",
-      "confirmar": "12345",
+      "nombre": "luz",
+      "email": "luz@gmail.com",
+      "password": "luz123",
+      "rol": 2,
       "id": 6
+    }
+  ],
+  "tiendas": [
+    {
+      "nombre": "Tienda 1",
+      "direccion": "Carrera 6 f este 89c 18 sur",
+      "id": 1
     },
     {
+      "nombre": "Tienda 2",
+      "id": 2,
+      "direccion": "carrera 6 f este 89  18 sur"
+    },
+    {
+      "nombre": "Tienda 3",
+      "direccion": "karrera 8 no 8 este",
+      "id": 3
+    },
+    {
+      "nombre": "Tienda veterinaria pet shop 2",
+      "direccion": "calle 96 con carrera 7",
+      "id": 5
+    }
+  ],
+  "productos": [
+    {
+      "idT": "3",
+      "idC": "2",
+      "nombre": "Purina ringo",
+      "precio": 12000,
+      "estado": false,
+      "id": 1
+    },
+    {
+      "idT": "1",
+      "idC": "1",
+      "nombre": "Purina Dog chaw",
+      "precio": "8000",
+      "estado": false,
+      "id": 2
+    },
+    {
+      "idT": "2",
+      "idC": "2",
+      "nombre": " Purina Mirringo",
+      "precio": 12000,
+      "estado": false,
+      "id": 3
+    },
+    {
+      "idT": "1",
+      "idC": "2",
+      "nombre": "Hueso de carnaza",
+      "precio": 12000,
+      "id": 4
+    },
+    {
+      "idT": "2",
+      "idC": "2",
+      "nombre": "Hueso de leche",
+      "precio": 12000,
+      "id": 5
+    },
+    {
+      "idT": "5",
+      "idC": "2",
+      "nombre": "collar",
+      "precio": "12000",
+      "id": 6
+    }
+  ],
+  "categorias": [
+    {
+      "id": 1,
+      "nombre": "Purina"
+    },
+    {
+      "id": 2,
+      "nombre": "Huesos"
+    }
+  ],
+  "ventas": [
+    {
+      "idP": "1",
+      "nombreProd": "Ringo",
+      "nombre": "Estiven",
+      "direccion": "carrera 6 ",
+      "telefono": "3112604202",
+      "id": 1
+    },
+    {
+      "idP": "3",
+      "nombreProd": "Mirringo",
+      "nombre": "Juan",
+      "direccion": "Hotel tequendama",
+      "telefono": "3214243125",
+      "id": 4
+    },
+    {
+      "idP": "6",
+      "nombreProd": "collar",
       "nombre": "Pedro",
-      "email": "arleyt@soy.sena.edu.co",
-      "password": "1234",
-      "confirmar": "12345",
-      "id": 7
-    },
-    {
-      "nombre": "Pedro",
-      "email": "arleyt@soy.sena.edu.co",
-      "password": "1234",
-      "confirmar": "12345",
-      "id": 8
-    },
-    {
-      "nombre": "Pedro",
-      "email": "arleyt@soy.sena.edu.co",
-      "password": "1234",
-      "confirmar": "12345",
-      "id": 9
-    },
-    {
-      "nombre": "Laura",
-      "email": "holis@sena.edu",
-      "password": "124",
-      "confirmar": "125",
-      "id": 10
-    },
-    {
-      "nombre": "HolaMundo",
-      "email": "sebasalfonso115@gmail.com",
-      "password": "12",
-      "confirmar": "12",
-      "id": 11
-    },
-    {
-      "nombre": "HolaMundo",
-      "email": "sebasalfonso115@gmail.com",
-      "password": "12",
-      "confirmar": "125",
-      "id": 12
-    },
-    {
-      "nombre": "ana",
-      "email": "ana@gmail.es",
-      "password": "1245",
-      "confirmar": "1245",
-      "id": 13
-    },
-    {
-      "nombre": "ana",
-      "email": "ana@gmail.es",
-      "password": "1245",
-      "confirmar": "1245",
-      "id": 14
-    },
-    {
-      "nombre": "Arley",
-      "email": "hector19bq@gmail",
-      "password": "Hector123@",
-      "confirmar": "Hector123@",
-      "id": 15
-    },
-    {
-      "nombre": "Ana",
-      "email": "hector19bq@gmail",
-      "password": "Hector123@",
-      "confirmar": "Hector123@",
-      "id": 16
-    },
-    {
-      "nombre": "Ana",
-      "email": "hector19bq@gmail",
-      "password": "Hector123@",
-      "confirmar": "Hector123@",
-      "id": 17
-    },
-    {
-      "email": "brayanpaloma19b@gmail.com",
-      "password": "124567",
-      "id": 18
+      "direccion": "calle 92 con carrera 6",
+      "telefono": "674117814",
+      "id": 5
     }
   ]
 }

@@ -122,7 +122,7 @@ const VisualizarCategorias = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {
+                            {
                                     ventas.map(item =>
                                         <tr key={item.id}>
                                             <td>{item.id}</td>

@@ -84,16 +84,35 @@ const Login = () => {
                     }
                 });
             } else {
-                const rol = usuarioExistente[0].rol;
-                console.log(rol)
-
-                if (rol === 1) {
-                    navigate("/home");
-                } else if (rol === 2) {
-                    navigate("/home2");
+                if (Array.isArray(usuarioExistente) && usuarioExistente.length > 0) {
+                    const rol = usuarioExistente[0].rol;
+                    console.log(rol);
+                
+                    if (rol === 1) {
+                        navigate("/home");
+                    } else if (rol === 2) {
+                        navigate("/home2");
+                    } else {
+                        alert("Tipo de usuario desconocido");
+                    }
                 } else {
-                    alert("Tipo de usuario desconocido");
+                    const msg = "No fue posible iniciar sesión, verifique los datos ingresados.";
+                    swal({
+                        title: 'Error',
+                        text: msg,
+                        icon: 'error',
+                        buttons: {
+                            confirm: {
+                                text: 'Ok',
+                                value: true,
+                                visible: true,
+                                className: 'btn btn-danger',
+                                closeModal: true
+                            }
+                        }
+                    });
                 }
+                
             }
 
         }
